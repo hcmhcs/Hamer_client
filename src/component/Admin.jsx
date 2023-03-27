@@ -3,36 +3,54 @@ import axios from "axios";
 
 function Admin() {
   const [users, setUsers] = useState(null);
-
+  const [posts, setPosts] = useState(null);
   async function getUsers() {
     //   await new Promise((resolve) => {
     //     setTimeout(() => resolve(), 3000);
     //   });
-    const response = await axios.get("http://localhost:4000/user/admin");
+    const response = await axios.get("http://localhost:4000/user");
     setUsers(response.data);
   }
+  async function getPosts() {
+    const response = await axios.get("http://localhost:4000/notice");
+    setPosts(response.data);
+  }
   useEffect(() => {
-    console.log(users);
-  }, [users]);
+    getPosts();
+  }, [posts]);
 
   useEffect(() => {
     getUsers();
-  }, []);
-
+  }, [users]);
+  // users?.map 을 안쓰고 그냥 users.map을 쓸때 사용해야됨
   if (!users) return null;
 
   return (
     <>
       <h1>Admin</h1>
-      <h3>회원명단</h3>
-      {users?.map((user, index) => (
-        <User user={user} key={index} />
-      ))}
+      <div>
+        <h3>회원명단</h3>
+        <ul>
+          {users?.map((user, index) => (
+            <User user={user} key={index} />
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>글목록</h3>
+        <ul>
+          {posts?.map((post, index) => (
+            <Post post={post} key={index} />
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
 //버튼 누르면 삭제하는 기능
-const deleteUser = () => {};
+function deleteUser(id) {
+  console.log("유저삭제");
+}
 function User({ user }) {
   return (
     <>
@@ -41,6 +59,19 @@ function User({ user }) {
         <a>이메일:{user.email}</a>
         <a>이름:{user.name} </a>
         <button onClick={deleteUser}>❌</button>
+      </li>
+    </>
+  );
+}
+function deletePost() {
+  console.log("글삭제");
+}
+function Post({ post }) {
+  return (
+    <>
+      <li>
+        <a>title:{post.title}</a>
+        <button onClick={deletePost}>❌</button>
       </li>
     </>
   );

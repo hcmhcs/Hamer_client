@@ -13,7 +13,7 @@ function Body() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/join" element={<JoinForm />} />
-        <Route path="/notice" element={<Notice />} />
+        <Route path="/notice/*" element={<Notice />} />
         <Route path="/freeboard" element={<Empty title="freeboard" />} />
         <Route path="/history" element={<Empty title="해머의 역사" />} />
         <Route path="/mypage" element={<Empty title="mypage" />} />

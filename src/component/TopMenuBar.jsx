@@ -16,7 +16,7 @@ function TopMenuBar({ loggedIn }) {
           <img
             className="Hamerlogo"
             alt="logo"
-            src="img/HamerLogo.png"
+            src="/img/HamerLogo.png"
             style={{ width: 150 }}
             onClick={movePage}
             href="/"
