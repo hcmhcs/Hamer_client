@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Home() {
+  const [isLogin, setIsLogin] = useState(false);
   const [message, setMessage] = useState(null);
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {}, [isLogin]);
   function getData() {
     axios
       .get("http://localhost:4000/")

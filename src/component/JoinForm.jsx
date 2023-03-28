@@ -12,8 +12,9 @@ function JoinForm() {
     password: "",
     password2: "",
     email: "",
-    nickname: "",
-    job: "",
+    studentNumber: "",
+    phoneNumber: "",
+    adminStatus: "",
   });
   const onChange = (e) => {
     setUser({
@@ -39,9 +40,13 @@ function JoinForm() {
       <h1>회원가입</h1>
       <Form method="post" onChange={onChange} onSubmit={join}>
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control name="email" type="email" placeholder="Enter email" />
+          <Form.Group as={Col} controlId="formGridstudentNumber">
+            <Form.Label>학번</Form.Label>
+            <Form.Control
+              name="studentNumber"
+              type="String"
+              placeholder="201920693"
+            />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridName">
@@ -49,7 +54,14 @@ function JoinForm() {
             <Form.Control name="name" type="string" placeholder="Name" />
           </Form.Group>
         </Row>
-
+        <Form.Group className="mb-3" controlId="formGridEmail">
+          <Form.Label>email</Form.Label>
+          <Form.Control
+            name="email"
+            type="email"
+            placeholder="asb123@ajou.ac.kr"
+          />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="formGridPassword1">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -69,17 +81,16 @@ function JoinForm() {
         </Form.Group>
 
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridCity">
-            <Form.Label>Nickname</Form.Label>
-            <Form.Control name="nickname" />
+          <Form.Group as={Col} controlId="formGridphoneNumber">
+            <Form.Label>전화번호</Form.Label>
+            <Form.Control name="phoneNumber" placeholder="010-9288-3434" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Job</Form.Label>
-            <Form.Select name="job" defaultValue="Choose...">
-              <option>Choose...</option>
-              <option>Student</option>
-              <option>department</option>
+            <Form.Label>adminStatus</Form.Label>
+            <Form.Select name="adminStatus" defaultValue="Choose...">
+              <option>일반회원</option>
+              <option>임원</option>
             </Form.Select>
           </Form.Group>
         </Row>

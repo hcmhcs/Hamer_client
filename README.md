@@ -28,3 +28,6 @@
 
 1. admin으로 로그인했을때만 admin사이트가 보이도록 설정
 2. 로그인 구현 로그인상태 유지
+3. admin에서 x버튼 눌렀을때 삭제되도록
+4. 로그인 post하면 게정확인 인증하기
+5. 게시판 css 바꾸기 https://tworab.tistory.com/79

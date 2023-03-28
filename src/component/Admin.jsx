@@ -48,22 +48,30 @@ function Admin() {
   );
 }
 //버튼 누르면 삭제하는 기능
-function deleteUser(id) {
-  console.log("유저삭제");
-}
+
 function User({ user }) {
+  // const deleteUser = (id) => {
+  //   console.log(id);
+  // };
   return (
     <>
       <li>
         <a>이름:{user.name}</a>
         <a>이메일:{user.email}</a>
         <a>이름:{user.name} </a>
-        <button onClick={deleteUser}>❌</button>
+        <button
+          onClick={() => {
+            console.log("유저삭제");
+          }}
+        >
+          ❌
+        </button>
       </li>
     </>
   );
 }
-function deletePost() {
+function deletePost(e) {
+  console.log(e.target.parentNode);
   console.log("글삭제");
 }
 function Post({ post }) {
