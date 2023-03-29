@@ -6,12 +6,12 @@ import JoinForm from "./component/JoinForm";
 import Empty from "./component/Empty";
 import Admin from "./component/Admin";
 import Notice from "./component/Notice";
-function Body() {
+function Body({ setIsLogin }) {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="/login" element={<LoginForm setIsLogin={setIsLogin} />} />
         <Route path="/join" element={<JoinForm />} />
         <Route path="/notice/*" element={<Notice />} />
         <Route path="/freeboard" element={<Empty title="freeboard" />} />

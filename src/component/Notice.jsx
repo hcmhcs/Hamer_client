@@ -47,6 +47,12 @@ function ListPost({ posts }) {
 }
 
 function Post({ post }) {
+  // const [id, setId] = useState(null);
+
+  // const moveDetail = (_id) => {
+  //   setId(_id);
+  //   window.location.href = "/notice/detail/" + id;
+  // };
   return <li>title :{post.title}</li>;
 }
 
@@ -67,14 +73,14 @@ function CreatePost() {
       .post("http://localhost:4000/notice/create", { post })
       .then((res) => {
         console.log(res.data.message);
-        window.location.href = "http://localhost:3002/notice";
+        window.location.href = "/notice";
       })
       .catch((error) => {
         console.log(error);
       });
   };
   const movePage = () => {
-    window.location.href = "http://localhost:3002/notice";
+    window.location.href = "/notice";
   };
   return (
     <>

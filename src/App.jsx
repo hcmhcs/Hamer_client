@@ -3,14 +3,15 @@ import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
-  useEffect(() => {}, [isLogin]);
+
   return (
     <>
       <Header isLogin={isLogin} />
-      <Body />
+      <Body setIsLogin={setIsLogin} />
       <Footer />
     </>
   );

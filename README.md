@@ -24,6 +24,9 @@
 (3/27) /notice/create에 들어갔을때 해머로고가 안먹음
 예상이유는 route중첩에 의한 거 같은데 해결법을 모르겠음
 
+(3/28) 로그인하면 App.js에 있는 useState login값을 변경해주는데 잘안먹는다
+-> localStorage에 저장해서 만들기(서버에서 준 토큰을 localStorage에 저장하기)
+
 ## 해야할것
 
 1. admin으로 로그인했을때만 admin사이트가 보이도록 설정

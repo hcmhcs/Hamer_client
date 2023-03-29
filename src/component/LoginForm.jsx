@@ -4,9 +4,9 @@ import Row from "react-bootstrap/Row";
 
 import React, { useState } from "react";
 import axios from "axios";
-function LoginForm() {
+function LoginForm({ setIsLogin }) {
   const moveJoin = () => {
-    window.location.href = "http://localhost:3002/join";
+    window.location.href = "/join";
   };
   const [user, setUser] = useState({
     studentNumber: "",
@@ -23,8 +23,10 @@ function LoginForm() {
     axios
       .post("http://localhost:4000/login", { user })
       .then((res) => {
-        console.log(res.data.isLogin);
+        // 여기서 App.jsx에 있는 useState값을 변경할 수 없을까
+        setIsLogin(res.data.isLogin);
         console.log(res.data.message);
+        // window.location.href = "/";
       })
       .catch((error) => {
         console.log(error);
