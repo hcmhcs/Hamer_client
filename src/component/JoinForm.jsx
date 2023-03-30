@@ -29,7 +29,7 @@ function JoinForm() {
       .post("http://localhost:4000/join", { user })
       .then((res) => {
         console.log(res.data.message);
-        // alert(res.data.message);
+        window.location.href = "/";
       })
       .catch((error) => {
         console.log(error);

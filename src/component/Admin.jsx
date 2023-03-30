@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 function Admin() {
@@ -50,35 +50,59 @@ function Admin() {
 //버튼 누르면 삭제하는 기능
 
 function User({ user }) {
-  // const deleteUser = (id) => {
-  //   console.log(id);
-  // };
+  const userInfo = useRef();
+  const deleteUser = async () => {
+    const url = "http://localhost:4000/user/" + userInfo.current.id;
+    try {
+      await axios.delete(url).then((res) => {
+        if (res.data.message === "ok") {
+          console.log("유저삭제완료");
+        } else {
+          console.log(res.data.message);
+          console.log("유저 삭제 실패");
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <li>
         <a>이름:{user.name}</a>
         <a>이메일:{user.email}</a>
-        <a>이름:{user.name} </a>
-        <button
-          onClick={() => {
-            console.log("유저삭제");
-          }}
-        >
-          ❌
-        </button>
+        <a ref={userInfo} id={user._id}>
+          학번:{user.studentNumber}{" "}
+        </a>
+        <button onClick={deleteUser}>❌</button>
       </li>
     </>
   );
 }
-function deletePost(e) {
-  console.log(e.target.parentNode);
-  console.log("글삭제");
-}
+
 function Post({ post }) {
+  const postInfo = useRef();
+  const deletePost = async () => {
+    const url = "http://localhost:4000/notice/" + postInfo.current.id;
+    try {
+      await axios.delete(url).then((res) => {
+        if (res.data.message === "ok") {
+          console.log("공지사항 삭제 완료");
+        } else {
+          console.log(res.data.message);
+          console.log("공지사항 삭제완료");
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <li>
-        <a>title:{post.title}</a>
+        <a ref={postInfo} id={post._id}>
+          title:{post.title}
+        </a>
         <button onClick={deletePost}>❌</button>
       </li>
     </>

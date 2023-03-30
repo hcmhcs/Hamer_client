@@ -23,6 +23,7 @@ function Notice() {
       <Routes>
         <Route path="/" element={<ListPost posts={posts} />} />
         <Route path="/create" element={<CreatePost />} />
+        <Route path="/*" element={<DetailPost posts={posts} />} />
       </Routes>
       <Outlet />
     </>
@@ -32,7 +33,8 @@ function Notice() {
 function ListPost({ posts }) {
   const createBoard = () => {
     if (!JSON.parse(localStorage.getItem("LoginUser"))) {
-      console.log("글쓰기 권한이 없습니다");
+      alert("글쓰기 권한이 없습니다");
+      window.location.href = "/login";
     } else {
       window.location.href = "/notice/create";
     }
@@ -52,26 +54,28 @@ function ListPost({ posts }) {
 }
 
 function Post({ post }) {
-  // const [id, setId] = useState(null);
-
-  // const moveDetail = (_id) => {
-  //   setId(_id);
-  //   window.location.href = "/notice/detail/" + id;
-  // };
-  return <li>title :{post.title}</li>;
+  const url = "/notice/" + post._id;
+  const moveDetail = () => {
+    window.location.href = url;
+  };
+  return <li onClick={moveDetail}>title :{post.title}</li>;
 }
 
 function CreatePost() {
   const [post, setPost] = useState({
     title: "",
     context: "",
+    author: "",
   });
   const onChange = (e) => {
+    const { name } = JSON.parse(localStorage.getItem("LoginUser"));
     setPost({
       ...post,
       [e.target.name]: e.target.value,
+      author: name,
     });
   };
+
   const create = (e) => {
     e.preventDefault();
     axios
@@ -112,5 +116,19 @@ function CreatePost() {
     </>
   );
 }
+function DetailPost({ posts }) {
+  console.log(posts);
+  const id = window.location.pathname.split("/").pop();
+  // 이런 함수를 쓸때 조심할점 ! 아직 posts를 받기전이면 posts는 null값이라서
+  // find 함수를 못씀 그니까 ?.find()를 사용하기
+  const post = posts?.find((obj) => obj._id === id);
 
+  return (
+    <>
+      <h1>title : {post?.title}</h1>
+      <h3>내용 : {post?.context}</h3>
+      <a>저자 : {post?.author}</a>
+    </>
+  );
+}
 export default Notice;
