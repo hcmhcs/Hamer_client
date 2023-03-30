@@ -17,11 +17,11 @@ function Admin() {
   }
   useEffect(() => {
     getPosts();
-  }, [posts]);
+  }, []);
 
   useEffect(() => {
     getUsers();
-  }, [users]);
+  }, []);
   // users?.map 을 안쓰고 그냥 users.map을 쓸때 사용해야됨
   if (!users) return null;
 

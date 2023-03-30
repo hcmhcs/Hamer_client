@@ -21,8 +21,11 @@ function LoginForm() {
       .post("http://localhost:4000/login", { user })
       .then((res) => {
         // 여기서 App.jsx에 있는 useState값을 변경할 수 없을까
-        const { isLogin, name } = res.data;
-        localStorage.setItem("LoginUser", JSON.stringify({ name, isLogin }));
+        const { isLogin, _id, name } = res.data;
+        localStorage.setItem(
+          "LoginUser",
+          JSON.stringify({ name, isLogin, _id })
+        );
         window.location.href = "/";
       })
       .catch((error) => {

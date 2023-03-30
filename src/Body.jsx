@@ -6,6 +6,7 @@ import JoinForm from "./component/JoinForm";
 import Empty from "./component/Empty";
 import Admin from "./component/Admin";
 import Notice from "./component/Notice";
+import Mypage from "./component/Mypage";
 function Body() {
   return (
     <BrowserRouter>
@@ -16,7 +17,7 @@ function Body() {
         <Route path="/notice/*" element={<Notice />} />
         <Route path="/freeboard" element={<Empty title="freeboard" />} />
         <Route path="/history" element={<Empty title="해머의 역사" />} />
-        <Route path="/mypage" element={<Empty title="mypage" />} />
+        <Route path="/mypage" element={<Mypage />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>

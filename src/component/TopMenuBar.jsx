@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -7,8 +7,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-function TopMenuBar({ loginState }) {
-  const { isLogin, name } = loginState;
+function TopMenuBar({ loginState, name }) {
   const logout = () => {
     // axios.get("http://localhost:4000/logout");
     localStorage.removeItem("LoginUser");
@@ -32,11 +31,11 @@ function TopMenuBar({ loginState }) {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            {!isLogin && <Nav.Link href="/login">Login</Nav.Link>}
-            {!isLogin && <Nav.Link href="/join">Join</Nav.Link>}
+            {!loginState.isLogin && <Nav.Link href="/login">Login</Nav.Link>}
+            {!loginState.isLogin && <Nav.Link href="/join">Join</Nav.Link>}
             {/* 이거를 같은 css처럼 만들어야함 */}
-            {isLogin && <a>{name}님 </a>}
-            {isLogin && <Nav.Link onClick={logout}>Logout</Nav.Link>}
+            {loginState.isLogin && <a>{name}님 </a>}
+            {loginState.isLogin && <Nav.Link onClick={logout}>Logout</Nav.Link>}
 
             <NavDropdown title="Other" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/notice">Notice</NavDropdown.Item>
@@ -46,8 +45,8 @@ function TopMenuBar({ loginState }) {
               <NavDropdown.Divider />
               <NavDropdown.Item href="/admin">Admin</NavDropdown.Item>
             </NavDropdown>
-            {isLogin && <Nav.Link href="/mypage">Mypage</Nav.Link>}
-            {!isLogin && (
+            {loginState.isLogin && <Nav.Link href="/mypage">Mypage</Nav.Link>}
+            {!loginState.isLogin && (
               <Nav.Link disabled href="/mypage">
                 Mypage
               </Nav.Link>
