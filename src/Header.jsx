@@ -1,8 +1,8 @@
 import React from "react";
 import TopMenuBar from "./component/TopMenuBar";
 
-function Header({ isLogin }) {
-  return <TopMenuBar isLogin={isLogin} />;
+function Header({ loginState }) {
+  return <TopMenuBar loginState={loginState} />;
 }
 
 export default Header;

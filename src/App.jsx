@@ -6,12 +6,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
-
+  const [loginState, setLoginState] = useState({ name: "", isLogin: false });
+  useEffect(() => {
+    if (localStorage.getItem("LoginUser")) {
+      const { name, isLogin } = JSON.parse(localStorage.getItem("LoginUser"));
+      setLoginState({
+        ...loginState,
+        name,
+        isLogin,
+      });
+    } else {
+      console.log("no user");
+    }
+  }, []);
   return (
     <>
-      <Header isLogin={isLogin} />
-      <Body setIsLogin={setIsLogin} />
+      <Header loginState={loginState} />
+      <Body />
       <Footer />
     </>
   );

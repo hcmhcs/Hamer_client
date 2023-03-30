@@ -30,6 +30,13 @@ function Notice() {
 }
 
 function ListPost({ posts }) {
+  const createBoard = () => {
+    if (!JSON.parse(localStorage.getItem("LoginUser"))) {
+      console.log("글쓰기 권한이 없습니다");
+    } else {
+      window.location.href = "/notice/create";
+    }
+  };
   return (
     <>
       <div>
@@ -39,9 +46,7 @@ function ListPost({ posts }) {
           ))}
         </ul>
       </div>
-      <button onClick={() => (window.location.href = "/notice/create")}>
-        글생성
-      </button>
+      <button onClick={createBoard}>글생성</button>
     </>
   );
 }

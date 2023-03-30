@@ -4,10 +4,7 @@ import Row from "react-bootstrap/Row";
 
 import React, { useState } from "react";
 import axios from "axios";
-function LoginForm({ setIsLogin }) {
-  const moveJoin = () => {
-    window.location.href = "/join";
-  };
+function LoginForm() {
   const [user, setUser] = useState({
     studentNumber: "",
     password: "",
@@ -24,9 +21,9 @@ function LoginForm({ setIsLogin }) {
       .post("http://localhost:4000/login", { user })
       .then((res) => {
         // 여기서 App.jsx에 있는 useState값을 변경할 수 없을까
-        setIsLogin(res.data.isLogin);
-        console.log(res.data.message);
-        // window.location.href = "/";
+        const { isLogin, name } = res.data;
+        localStorage.setItem("LoginUser", JSON.stringify({ name, isLogin }));
+        window.location.href = "/";
       })
       .catch((error) => {
         console.log(error);
@@ -63,7 +60,10 @@ function LoginForm({ setIsLogin }) {
         <Button variant="primary" type="submit">
           Login
         </Button>
-        <Form.Text onClick={moveJoin} className="text-muted">
+        <Form.Text
+          onClick={() => (window.location.href = "/join")}
+          className="text-muted"
+        >
           회원이 아니신가요?
         </Form.Text>
       </Form>
