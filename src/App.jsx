@@ -28,11 +28,13 @@ function App() {
       console.log("no user");
     }
   }, []);
-  console.log(user);
+  useEffect(() => {
+    console.log(user?.name, "님이 접속했습니다.");
+  }, [user]);
   return (
     <>
       <Header loginState={loginState} name={user?.name} />
-      <Body />
+      <Body user={user} />
       <Footer />
     </>
   );

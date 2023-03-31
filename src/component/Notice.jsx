@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import axios from "axios";
 
-function Notice() {
+function Notice({ name }) {
   const [posts, setPosts] = useState(null);
-  useEffect(() => {
-    getPost();
-  }, [posts]);
+
   async function getPost() {
     await axios
       .get("http://localhost:4000/notice")
@@ -17,22 +15,26 @@ function Notice() {
         console.error(error);
       });
   }
+  useEffect(() => {
+    getPost();
+  }, []);
+  useEffect(() => {}, [posts]);
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<ListPost posts={posts} />} />
-        <Route path="/create" element={<CreatePost />} />
+        <Route path="/" element={<ListPost posts={posts} name={name} />} />
+        <Route path="/create" element={<CreatePost name={name} />} />
         <Route path="/*" element={<DetailPost posts={posts} />} />
       </Routes>
       <Outlet />
     </>
   );
 }
-
-function ListPost({ posts }) {
+//글목록 페이지
+function ListPost({ posts, name }) {
   const createBoard = () => {
-    if (!JSON.parse(localStorage.getItem("LoginUser"))) {
+    if (!name) {
       alert("글쓰기 권한이 없습니다");
       window.location.href = "/login";
     } else {
@@ -61,14 +63,14 @@ function Post({ post }) {
   return <li onClick={moveDetail}>title :{post.title}</li>;
 }
 
-function CreatePost() {
+//글생성 페이지
+function CreatePost({ name }) {
   const [post, setPost] = useState({
     title: "",
     context: "",
     author: "",
   });
   const onChange = (e) => {
-    const { name } = JSON.parse(localStorage.getItem("LoginUser"));
     setPost({
       ...post,
       [e.target.name]: e.target.value,
@@ -116,6 +118,8 @@ function CreatePost() {
     </>
   );
 }
+
+//글 세부사항 페이지
 function DetailPost({ posts }) {
   const id = window.location.pathname.split("/").pop();
   // 이런 함수를 쓸때 조심할점 ! 아직 posts를 받기전이면 posts는 null값이라서
