@@ -1,7 +1,9 @@
+// eslint-disable-next-line
+
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
-function Admin() {
+function Admin({ user }) {
   const [users, setUsers] = useState(null);
   const [posts, setPosts] = useState(null);
   async function getUsers() {
@@ -26,7 +28,11 @@ function Admin() {
   useEffect(() => {}, [posts]);
   // users?.map 을 안쓰고 그냥 users.map을 쓸때 사용해야됨
   if (!users) return null;
-
+  if (!localStorage.getItem("LoginUser")) {
+    return <h1>잘못된 접근, Login후 접속가능</h1>;
+  } else if (!user?.adminStatus) {
+    return <h1>잘못된 접근, Admin만 접속가능</h1>;
+  }
   return (
     <>
       <h1>Admin</h1>
@@ -71,8 +77,8 @@ function User({ user }) {
   return (
     <>
       <li>
-        <a>이름:{user.name}</a>
-        <a>이메일:{user.email}</a>
+        <a>이름:{user.name} /</a>
+        <a>이메일:{user.email} /</a>
         <a ref={userInfo} id={user._id}>
           학번:{user.studentNumber}{" "}
         </a>

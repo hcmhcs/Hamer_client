@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Body from "./Body";
@@ -6,7 +7,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
 function App() {
-  const [loginState, setLoginState] = useState({ isLogin: false });
+  const [loginState, setLoginState] = useState({
+    isLogin: false,
+  });
   const [user, setUser] = useState(null);
 
   async function getUser(_id) {
@@ -33,7 +36,11 @@ function App() {
   }, [user]);
   return (
     <>
-      <Header loginState={loginState} name={user?.name} />
+      <Header
+        loginState={loginState}
+        name={user?.name}
+        adminStatus={user?.adminStatus}
+      />
       <Body user={user} />
       <Footer />
     </>

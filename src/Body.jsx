@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./component/Home";
@@ -7,6 +9,7 @@ import Empty from "./component/Empty";
 import Admin from "./component/Admin";
 import Notice from "./component/Notice";
 import Mypage from "./component/Mypage";
+import History from "./component/History";
 function Body({ user }) {
   return (
     <BrowserRouter>
@@ -16,9 +19,12 @@ function Body({ user }) {
         <Route path="/join" element={<JoinForm />} />
         <Route path="/notice/*" element={<Notice name={user?.name} />} />
         <Route path="/freeboard" element={<Empty title="freeboard" />} />
-        <Route path="/history" element={<Empty title="해머의 역사" />} />
+        <Route
+          path="/history/*"
+          element={<History adminStatus={user?.adminStatus} />}
+        />
         <Route path="/mypage" element={<Mypage user={user} />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<Admin user={user} />} />
       </Routes>
     </BrowserRouter>
   );

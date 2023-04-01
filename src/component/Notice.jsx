@@ -1,7 +1,11 @@
+// eslint-disable-next-line
+
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import axios from "axios";
 
+//글목록 react-bootstrap의 accordion
 function Notice({ name }) {
   const [posts, setPosts] = useState(null);
 
@@ -50,7 +54,9 @@ function ListPost({ posts, name }) {
           ))}
         </ul>
       </div>
-      <button onClick={createBoard}>글생성</button>
+      <Button variant="primary" size="sm" onClick={createBoard}>
+        글생성
+      </Button>{" "}
     </>
   );
 }
@@ -96,7 +102,6 @@ function CreatePost({ name }) {
   return (
     <>
       <h1>글생성사이트</h1>
-
       <form method="post" onChange={onChange} onSubmit={create}>
         <div>
           <a>title : </a>
@@ -114,7 +119,9 @@ function CreatePost({ name }) {
           <input type="submit" value="create"></input>
         </div>
       </form>
-      <button onClick={movePage}>글 목록</button>
+      <Button onClick={movePage} variant="primary" size="sm">
+        글목록
+      </Button>{" "}
     </>
   );
 }

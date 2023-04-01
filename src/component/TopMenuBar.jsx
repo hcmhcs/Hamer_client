@@ -1,18 +1,21 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+// eslint-disable-next-line
+
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import axios from "axios";
 
-function TopMenuBar({ loginState, name }) {
+function TopMenuBar({ loginState, name, adminStatus }) {
   const logout = () => {
     // axios.get("http://localhost:4000/logout");
     localStorage.removeItem("LoginUser");
     window.location.href = "/";
   };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -41,9 +44,16 @@ function TopMenuBar({ loginState, name }) {
               <NavDropdown.Item href="/notice">Notice</NavDropdown.Item>
               <NavDropdown.Item href="/freeboard">FreeBoard</NavDropdown.Item>
               <NavDropdown.Item href="/history">해머 역사</NavDropdown.Item>
-
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/admin">Admin</NavDropdown.Item>
+
+              {loginState.isLogin && adminStatus && (
+                <NavDropdown.Item href="/admin">Admin</NavDropdown.Item>
+              )}
+              {loginState.isLogin && !adminStatus && (
+                <NavDropdown.Item disabled href="/admin">
+                  Admin
+                </NavDropdown.Item>
+              )}
             </NavDropdown>
             {loginState.isLogin && <Nav.Link href="/mypage">Mypage</Nav.Link>}
             {!loginState.isLogin && (

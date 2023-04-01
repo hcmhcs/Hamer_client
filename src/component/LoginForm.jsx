@@ -1,6 +1,7 @@
+// eslint-disable-next-line
+
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 
 import React, { useState } from "react";
 import axios from "axios";
@@ -21,11 +22,8 @@ function LoginForm() {
       .post("http://localhost:4000/login", { user })
       .then((res) => {
         // 여기서 App.jsx에 있는 useState값을 변경할 수 없을까
-        const { isLogin, _id, name } = res.data;
-        localStorage.setItem(
-          "LoginUser",
-          JSON.stringify({ name, isLogin, _id })
-        );
+        const { isLogin, _id } = res.data;
+        localStorage.setItem("LoginUser", JSON.stringify({ isLogin, _id }));
         window.location.href = "/";
       })
       .catch((error) => {

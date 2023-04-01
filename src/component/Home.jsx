@@ -1,5 +1,8 @@
+// eslint-disable-next-line
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Carousel from "react-bootstrap/Carousel";
 
 function Home() {
   const [isLogin, setIsLogin] = useState(false);
@@ -18,10 +21,11 @@ function Home() {
         console.error(error);
       });
   }
+
   return (
     <>
       <h1>Homepage</h1>
-      <a>{message}</a>
+      <h3>test message: {message}</h3>
     </>
   );
 }
