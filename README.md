@@ -49,15 +49,13 @@
 
 ## 해야할것
 
+1. 임원으로 승인해주는 절차 생각하기
 2. 로그인 구현 로그인상태 유지
-   -> localStorage 로 구현 session으로 바꿔야됨
+   -> localStorage 로 구현 session으로 바꿔야됨, 자동로그인 추가
 3. 로그인 post하면 게정확인 인증하기
    -> 서버쪽에 로그인 인증 좀더 자세히하기
 4. 게시판 css 바꾸기 https://tworab.tistory.com/79
 5. admin css 꾸미기
-6. 지금 join에서 password 다른지 확인하는게 잘못됨
-7. 글 삭제할때 \_id를 통해 name 불러오기
-8. 글쓰기 삭제할때 권한없음
 
 ## 아이디어
 

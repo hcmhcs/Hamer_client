@@ -47,26 +47,68 @@ function ListPost({ posts, name }) {
   };
   return (
     <>
-      <div>
+      <div style={{ padding: "10 20px" }}>
+        <table>
+          <colgroup>
+            <col width="15%" />
+            <col width="50%" />
+            <col width="20%" />
+            <col width="*" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>작성일시</th>
+              {/* <th>조회수</th> */}
+            </tr>
+          </thead>
+          <tbody>
+            {posts?.map((post, index) => (
+              <Post post={post} key={index} num={index} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* <div>
         <ul>
           {posts?.map((post, index) => (
             <Post post={post} key={index} />
           ))}
         </ul>
-      </div>
-      <Button variant="primary" size="sm" onClick={createBoard}>
+      </div> */}
+      <Button
+        style={{ padding: "6px" }}
+        variant="primary"
+        size="sm"
+        onClick={createBoard}
+      >
         글생성
       </Button>{" "}
     </>
   );
 }
 
-function Post({ post }) {
-  const url = "/notice/" + post._id;
-  const moveDetail = () => {
-    window.location.href = url;
-  };
-  return <li onClick={moveDetail}>title :{post.title}</li>;
+function Post({ post, num }) {
+  return (
+    <tr
+      onClick={() => {
+        window.location.href = "/notice/" + post._id;
+      }}
+      key={post._id}
+    >
+      <td>{num + 1}</td>
+      <td className="text-left">
+        {/* <Link style={{ color: "#909090" }}>{post.title}</Link> */}
+        {post.title}
+      </td>
+      <td>{post.author}</td>
+      <td>{post.createdAt.substring(0, 10)}</td>
+      {/* <td>{moment(post.date).format("YYYY-MM-DD")}</td> */}
+      {/* <td>{post.readCount}</td> */}
+    </tr>
+  );
 }
 
 //글생성 페이지

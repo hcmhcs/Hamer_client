@@ -14,7 +14,7 @@ function Body({ user }) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home user={user} />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/join" element={<JoinForm />} />
         <Route path="/notice/*" element={<Notice name={user?.name} />} />
