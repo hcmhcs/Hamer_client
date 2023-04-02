@@ -56,7 +56,8 @@
 4. 게시판 css 바꾸기 https://tworab.tistory.com/79
 5. admin css 꾸미기
 6. 지금 join에서 password 다른지 확인하는게 잘못됨
-7. 글쓰기 삭제할때 권한없음
+7. 글 삭제할때 \_id를 통해 name 불러오기
+8. 글쓰기 삭제할때 권한없음
 
 ## 아이디어
 

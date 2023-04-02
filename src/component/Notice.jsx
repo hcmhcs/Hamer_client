@@ -29,7 +29,7 @@ function Notice({ name }) {
       <Routes>
         <Route path="/" element={<ListPost posts={posts} name={name} />} />
         <Route path="/create" element={<CreatePost name={name} />} />
-        <Route path="/*" element={<DetailPost posts={posts} />} />
+        <Route path="/*" element={<DetailPost posts={posts} name={name} />} />
       </Routes>
       <Outlet />
     </>
@@ -127,7 +127,7 @@ function CreatePost({ name }) {
 }
 
 //글 세부사항 페이지
-function DetailPost({ posts }) {
+function DetailPost({ posts, name }) {
   const id = window.location.pathname.split("/").pop();
   // 이런 함수를 쓸때 조심할점 ! 아직 posts를 받기전이면 posts는 null값이라서
   // find 함수를 못씀 그니까 ?.find()를 사용하기
@@ -137,10 +137,8 @@ function DetailPost({ posts }) {
       alert("권한없음");
       window.location.href = "/login";
     } else {
-      const LoginUser = JSON.parse(localStorage.getItem("LoginUser"));
       console.log(post?.author);
-      console.log(LoginUser.name);
-      if (post?.author === LoginUser.name) {
+      if (post?.author === name) {
         try {
           await axios
             .delete("http://localhost:4000/notice/" + id)

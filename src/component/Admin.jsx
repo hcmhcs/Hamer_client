@@ -108,8 +108,14 @@ function Post({ post }) {
   return (
     <>
       <li>
-        <a ref={postInfo} id={post._id}>
-          title:{post.title}
+        <a
+          onClick={() => {
+            window.location.href = "/notice/" + post._id;
+          }}
+          ref={postInfo}
+          id={post._id}
+        >
+          title:{post.title} / author: {post.author}
         </a>
         <button onClick={deletePost}>❌</button>
       </li>
