@@ -91,8 +91,25 @@ function ListPost({ posts, name }) {
 }
 
 function Post({ post, num }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const mouseEnter = () => {
+    setIsHovered(true);
+  };
+  const mouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const listStyle = {
+    backgroundColor: isHovered ? "gray" : "white",
+    color: isHovered ? "white" : "black",
+    cursor: "pointer",
+  };
   return (
     <tr
+      style={listStyle}
+      onMouseEnter={mouseEnter}
+      onMouseLeave={mouseLeave}
       onClick={() => {
         window.location.href = "/notice/" + post._id;
       }}

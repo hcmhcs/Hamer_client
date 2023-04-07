@@ -41,7 +41,7 @@ function App() {
         name={user?.name}
         adminStatus={user?.adminStatus}
       />
-      <Body user={user} />
+      <Body user={user} name={user?.name} />
       <Footer />
     </>
   );

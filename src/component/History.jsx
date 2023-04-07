@@ -1,14 +1,53 @@
 // eslint-disable-next-line
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import Empty from "./Empty";
 import pathToRegexp from "path-to-regexp";
+import axios from "axios";
+import { Badge, useAccordionButton } from "react-bootstrap";
 
-function History({ adminStatus }) {
-  console.log(adminStatus);
+function History({ adminStatus, name }) {
+  const [behinds, setBehinds] = useState(null);
+  const [historys, setHistorys] = useState(null);
+
+  useEffect(() => {
+    getBehinds();
+  }, []);
+
+  useEffect(() => {
+    getHistorys();
+  }, []);
+
+  useEffect(() => {
+    console.log("비하인드들", behinds);
+  }, [behinds]);
+  useEffect(() => {
+    console.log("historys:", historys);
+  }, [historys]);
+  async function getHistorys() {
+    await axios
+      .get("http://localhost:4000/history")
+      .then((response) => {
+        setHistorys(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  async function getBehinds() {
+    await axios
+      .get("http://localhost:4000/history/admin")
+      .then((response) => {
+        setBehinds(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   const movePage = (e) => {
     const year = e.target.innerText;
     window.location.href = "/history/" + year;
@@ -32,11 +71,18 @@ function History({ adminStatus }) {
           }
         />
         <Route
+          path="/admin/create/*"
+          element={<CreateBehind adminStatus={adminStatus} />}
+        />
+        <Route
           path="/admin/*"
-          element={<DetailHistory adminStatus={adminStatus} />}
+          element={<DetailHistory adminStatus={adminStatus} data={behinds} />}
         />
 
-        <Route path="/*" element={<DetailHistory />} />
+        <Route
+          path="/*"
+          element={<DetailHistory adminStatus={adminStatus} data={historys} />}
+        />
       </Routes>
       <Outlet />
     </>
@@ -120,10 +166,22 @@ function ListGroupItem({ movePage, year }) {
 
 function DetailHistory({ adminStatus }) {
   const year = window.location.pathname.split("/").pop();
+
   return (
     <>
       {adminStatus && <h1>{year}년도 임원진 비하인드</h1>}
       {!adminStatus && <h1>{year}년도 역사</h1>}
+      {adminStatus && (
+        <Button
+          onClick={() => {
+            window.location.href = "create/" + year;
+          }}
+          variant="primary"
+          size="sm"
+        >
+          글생성
+        </Button>
+      )}
       <Button
         onClick={() => {
           window.location.href = "/history";
@@ -136,4 +194,63 @@ function DetailHistory({ adminStatus }) {
     </>
   );
 }
+//현재 관리자상태에 따라 글생성이게 확인이 안됨
+function CreateBehind({ adminStatus }) {
+  const year = window.location.pathname.split("/").pop();
+  //   const type = adminStatus ? "behind" : "history";
+  const type = "behind";
+  const [behind, setBehind] = useState({
+    title: "",
+    context: "",
+    author: "익명",
+    year,
+    type,
+  });
+  const onChange = (e) => {
+    setBehind({
+      ...behind,
+      [e.target.name]: e.target.value,
+    });
+  };
+  console.log(adminStatus);
+  console.log(behind);
+  const create = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:4000/history/create", { behind })
+      .then((res) => {
+        alert(res.data.message);
+        window.location.href = document.referrer;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  return (
+    <>
+      <h1>{year} 년도 비하인드 글생성</h1>
+      <form method="post" onChange={onChange} onSubmit={create}>
+        <div>
+          <a>title : </a>
+          <input name="title" type="string"></input>
+        </div>
+        <div>
+          <a>context: </a>
+          <input
+            style={{ width: 700, height: 400 }}
+            name="context"
+            type="string"
+          ></input>
+        </div>
+        <div>
+          <input type="submit" value="create"></input>
+        </div>
+      </form>
+      <Button variant="primary" size="sm">
+        글목록
+      </Button>{" "}
+    </>
+  );
+}
+function BehindList() {}
 export default History;

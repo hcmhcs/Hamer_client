@@ -21,7 +21,9 @@ function Body({ user }) {
         <Route path="/freeboard" element={<Empty title="freeboard" />} />
         <Route
           path="/history/*"
-          element={<History adminStatus={user?.adminStatus} />}
+          element={
+            <History name={user?.name} adminStatus={user?.adminStatus} />
+          }
         />
         <Route path="/mypage" element={<Mypage user={user} />} />
         <Route path="/admin" element={<Admin user={user} />} />

@@ -2,15 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Carousel from "react-bootstrap/Carousel";
 
 function Home({ user }) {
-  const [isLogin, setIsLogin] = useState(false);
   const [message, setMessage] = useState(null);
   useEffect(() => {
     getData();
   }, []);
-  useEffect(() => {}, [isLogin]);
+  useEffect(() => {}, [message]);
   function getData() {
     axios
       .get("http://localhost:4000/")

@@ -88,7 +88,7 @@ function User({ user }) {
   );
 }
 
-function Post({ post }) {
+function Post({ getPosts, post }) {
   const postInfo = useRef();
   const deletePost = async () => {
     const url = "http://localhost:4000/notice/" + postInfo.current.id;
