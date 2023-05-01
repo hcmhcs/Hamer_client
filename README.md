@@ -52,6 +52,7 @@
 1. 임원으로 승인해주는 절차 생각하기
 2. 로그인 구현 로그인상태 유지
    -> localStorage 로 구현 session으로 바꿔야됨, 자동로그인 추가
+   -> https://jrepository.tistory.com/m/65 (리액트쪽)
 3. 로그인 post하면 게정확인 인증하기
    -> 서버쪽에 로그인 인증 좀더 자세히하기
 4. 게시판 css 바꾸기 https://tworab.tistory.com/79

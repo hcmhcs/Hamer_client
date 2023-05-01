@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import React from "react";
-import TopMenuBar from "./component/TopMenuBar";
+import TopMenuBar from "./component/Header/TopMenuBar";
 
 function Header({ loginState, name, adminStatus }) {
   return (
