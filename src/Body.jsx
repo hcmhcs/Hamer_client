@@ -2,14 +2,14 @@
 
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./component/Home";
-import LoginForm from "./component/LoginForm";
-import JoinForm from "./component/JoinForm";
-import Empty from "./component/Empty";
-import Admin from "./component/Admin";
-import Notice from "./component/Notice";
-import Mypage from "./component/Mypage";
-import History from "./component/History";
+import Home from "./component/Body/home_page/Home";
+import LoginForm from "./component/Body/login_page/LoginForm";
+import JoinForm from "./component/Body/join_page/JoinForm";
+import Empty from "./component/Body/empty_page/Empty";
+import Admin from "./component/Body/admin_page/Admin";
+import Notice from "./component/Body/notice_page/Notice";
+import Mypage from "./component/Body/mypage_page/Mypage";
+import History from "./component/Body/history_page/History";
 function Body({ user }) {
   return (
     <BrowserRouter>
