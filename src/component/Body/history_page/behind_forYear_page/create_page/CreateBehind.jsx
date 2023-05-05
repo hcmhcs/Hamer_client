@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 //타입에 따라서 behind인지 history인지 분류해서 post요청보낼생각
 
 function CreateBehind({ adminStatus }) {
-  const year = window.location.pathname.split("/").pop();
+  const year = useParams().year;
   //   const type = adminStatus ? "behind" : "history";
   const type = "behind";
   const [behind, setBehind] = useState({
@@ -21,8 +22,7 @@ function CreateBehind({ adminStatus }) {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(adminStatus);
-  console.log(behind);
+
   const create = (e) => {
     e.preventDefault();
     axios

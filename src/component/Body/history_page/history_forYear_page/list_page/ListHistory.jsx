@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import axios from "axios";
 import History from "./History";
 function ListHistory({ adminStatus, historys }) {
   const year = window.location.pathname.split("/").pop();
@@ -36,7 +34,7 @@ function ListHistory({ adminStatus, historys }) {
       {adminStatus && (
         <Button
           onClick={() => {
-            window.location.href = "create/" + year;
+            window.location.href = year + "/create";
           }}
           variant="primary"
           size="sm"

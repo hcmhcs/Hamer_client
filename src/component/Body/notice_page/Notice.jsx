@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
 import CreatePost from "./create_page/CreatePost";
 import DetailPost from "./detail_page/DetailPost";

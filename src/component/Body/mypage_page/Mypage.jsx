@@ -1,7 +1,7 @@
 // eslint-disable-next-line
-
 import React from "react";
 import Button from "react-bootstrap/Button";
+
 function Mypage({ user }) {
   if (!localStorage.getItem("LoginUser")) {
     return <h1>잘못된 접근, Login후 접속가능</h1>;

@@ -1,12 +1,12 @@
-import { Outlet, Route, Routes } from "react-router-dom";
-import Empty from "../../empty_page/Empty";
-import react, { useParams, useState, useEffect } from "react";
+import { Outlet, Route, Routes, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import ListHistory from "./list_page/ListHistory";
 import CreateHistory from "./create_page/CreateHistory";
 import DetailHistory from "./detail_page/DetailHistory";
 import axios from "axios";
-function HistoryRoute() {
-  const year = window.location.pathname.split("/").pop();
+function HistoryRoute({ adminStatus }) {
+  const year = useParams().year;
+  // const year = params.year;
   const [historys, setHistorys] = useState(null);
   const url = "http://localhost:4000/history/" + year;
   async function getHistory() {
@@ -26,9 +26,19 @@ function HistoryRoute() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<ListHistory historys={historys} />} />
+        <Route
+          path="/"
+          element={
+            <ListHistory adminStatus={adminStatus} historys={historys} />
+          }
+        />
         <Route path="/create" element={<CreateHistory />} />
-        <Route path="/:id" element={<DetailHistory historys={historys} />} />
+        <Route
+          path="/:id"
+          element={
+            <DetailHistory adminStatus={adminStatus} historys={historys} />
+          }
+        />
       </Routes>
       <Outlet />
     </>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 
 function ListGroupItem({ movePage, year }) {

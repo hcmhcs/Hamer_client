@@ -1,10 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Behind from "./Behind";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-function ListBehind({ behinds, adminStatus }) {
-  const year = window.location.pathname.split("/").pop();
+import React from "react";
+import { useParams } from "react-router-dom";
 
+function ListBehind({ behinds, adminStatus }) {
+  const year = useParams().year;
   return (
     <>
       {adminStatus && <h1>{year}년도 임원진 비하인드</h1>}
@@ -36,7 +36,7 @@ function ListBehind({ behinds, adminStatus }) {
       {adminStatus && (
         <Button
           onClick={() => {
-            window.location.href = "create/" + year;
+            window.location.href = year + "/create";
           }}
           variant="primary"
           size="sm"

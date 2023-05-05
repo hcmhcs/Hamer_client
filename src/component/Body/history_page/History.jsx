@@ -29,8 +29,14 @@ function History({ adminStatus, name }) {
             />
           }
         />
-        <Route path="/admin/:year" element={<BehindRoute />} />
-        <Route path="/:year" element={<HistoryRoute />} />
+        <Route
+          path="/admin/:year/*"
+          element={<BehindRoute adminStatus={adminStatus} />}
+        />
+        <Route
+          path="/:year/*"
+          element={<HistoryRoute adminStatus={adminStatus} />}
+        />
         {/* 여기서 behind를 재요청할수있지만 behind의 라우팅페이지를 따로만들면 
         list behind에서와 detailbehind에서 각각 요청할 필요없이 한번 라우팅페이지에서
         요청한 behinds를 전달해주면 된다. */}
