@@ -1,58 +1,12 @@
 // eslint-disable-next-line
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
-import ListGroup from "react-bootstrap/ListGroup";
-import Button from "react-bootstrap/Button";
-import axios from "axios";
 import AllHistory from "./main_page/AllHistory";
-import ListGroupItem from "./main_page/ListGroupItem";
-import DetailHistory from "./detail_page/DetailHistory";
-import CreateBehind from "./create_page/CreateBehind";
-
-import Empty from "../empty_page/Empty";
-import pathToRegexp from "path-to-regexp";
-import { Badge, useAccordionButton } from "react-bootstrap";
+import HistoryRoute from "./history_forYear_page/HistoryRoute";
+import BehindRoute from "./behind_forYear_page/BehindRoute";
 
 function History({ adminStatus, name }) {
-  const [behinds, setBehinds] = useState(null);
-  const [historys, setHistorys] = useState(null);
-
-  useEffect(() => {
-    getBehinds();
-  }, []);
-
-  useEffect(() => {
-    getHistorys();
-  }, []);
-
-  useEffect(() => {
-    console.log("비하인드들", behinds);
-  }, [behinds]);
-  useEffect(() => {
-    console.log("historys:", historys);
-  }, [historys]);
-  async function getHistorys() {
-    await axios
-      .get("http://localhost:4000/history")
-      .then((response) => {
-        setHistorys(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-  async function getBehinds() {
-    await axios
-      .get("http://localhost:4000/history/admin")
-      .then((response) => {
-        setBehinds(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
   const movePage = (e) => {
     const year = e.target.innerText;
     window.location.href = "/history/" + year;
@@ -75,22 +29,11 @@ function History({ adminStatus, name }) {
             />
           }
         />
-        <Route
-          path="/admin/create/*"
-          element={<CreateBehind adminStatus={adminStatus} />}
-        />
-        <Route
-          path="/admin/*"
-          element={<DetailHistory adminStatus={adminStatus} data={behinds} />}
-        />
-        <Route
-          path="/create/*"
-          element={<CreateBehind adminStatus={adminStatus} />}
-        />
-        <Route
-          path="/*"
-          element={<DetailHistory adminStatus={adminStatus} data={historys} />}
-        />
+        <Route path="/admin/:year" element={<BehindRoute />} />
+        <Route path="/:year" element={<HistoryRoute />} />
+        {/* 여기서 behind를 재요청할수있지만 behind의 라우팅페이지를 따로만들면 
+        list behind에서와 detailbehind에서 각각 요청할 필요없이 한번 라우팅페이지에서
+        요청한 behinds를 전달해주면 된다. */}
       </Routes>
       <Outlet />
     </>

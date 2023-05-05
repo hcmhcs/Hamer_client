@@ -69,3 +69,12 @@
 2. 일정
 3. 실시간 동방에 누구 있는지 (센서 혹은 수동등록)
 4. 게임
+
+5/3
+우선 detail_page이름을 List_page로 변경하고 detail페이지 제작하기
+이에 관한 백엔드 구성하기
+동적라우팅공부하기
+참고사이트:https://velog.io/@zzangzzong/React-%EB%8F%99%EC%A0%81%EB%9D%BC%EC%9A%B0%ED%8C%85Dynamic-Routing
+이때 useParams를 이용해서 params를 가져올수있다.
+
+년도별 main페이지가 필요 그니까 2022년도 behinds면 2022 behind 라우팅 페이지가 필요
