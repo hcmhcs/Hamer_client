@@ -2,6 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "./ListGroupItem";
 
 function AllHistory({ movePage, moveAdminPage, adminStatus }) {
+  const currentYear = new Date().getFullYear();
   return (
     <>
       <h1>해머의 역사페이지</h1>
@@ -18,12 +19,18 @@ function AllHistory({ movePage, moveAdminPage, adminStatus }) {
       <br />
       <h2>년도별 해머의 행적</h2>
       <ListGroup horizontal>
-        <ListGroupItem movePage={movePage} year="2018" />
-        <ListGroupItem movePage={movePage} year="2019" />
-        <ListGroupItem movePage={movePage} year="2020" />
-        <ListGroupItem movePage={movePage} year="2021" />
-        <ListGroupItem movePage={movePage} year="2022" />
-        <ListGroupItem movePage={movePage} year="2023" />
+        {[...Array(currentYear - 2017)].map(
+          (
+            _,
+            index // 2018부터 현재 년도까지 반복문 돌리기
+          ) => (
+            <ListGroupItem
+              key={index}
+              movePage={movePage}
+              year={currentYear - index}
+            />
+          )
+        )}
       </ListGroup>
       <br />
       <br />
@@ -34,12 +41,18 @@ function AllHistory({ movePage, moveAdminPage, adminStatus }) {
         <>
           <h2>임원진 전용 해머의 비하인드</h2>
           <ListGroup horizontal>
-            <ListGroupItem movePage={moveAdminPage} year="2018" />
-            <ListGroupItem movePage={moveAdminPage} year="2019" />
-            <ListGroupItem movePage={moveAdminPage} year="2020" />
-            <ListGroupItem movePage={moveAdminPage} year="2021" />
-            <ListGroupItem movePage={moveAdminPage} year="2022" />
-            <ListGroupItem movePage={moveAdminPage} year="2023" />
+            {[...Array(currentYear - 2017)].map(
+              (
+                _,
+                index // 2018부터 현재 년도까지 반복문 돌리기
+              ) => (
+                <ListGroupItem
+                  key={index}
+                  movePage={moveAdminPage}
+                  year={currentYear - index}
+                />
+              )
+            )}
           </ListGroup>
         </>
       )}

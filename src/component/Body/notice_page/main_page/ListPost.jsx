@@ -14,6 +14,7 @@ function ListPost({ posts, name }) {
   return (
     <>
       <div style={{ padding: "10 20px" }}>
+        <h2>공지사항</h2>
         <table>
           <colgroup>
             <col width="15%" />

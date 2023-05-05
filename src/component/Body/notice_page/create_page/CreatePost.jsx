@@ -21,8 +21,12 @@ function CreatePost({ name }) {
     axios
       .post("http://localhost:4000/notice/create", { post })
       .then((res) => {
-        console.log(res.data.message);
-        window.location.href = "/notice";
+        if (res.data.message === "no") {
+          alert(res.data.why);
+        } else {
+          console.log(res.data.message);
+          window.location.href = "/notice";
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -41,11 +45,11 @@ function CreatePost({ name }) {
         </div>
         <div>
           <a>context: </a>
-          <input
+          <textarea
             style={{ width: 700, height: 400 }}
             name="context"
             type="string"
-          ></input>
+          ></textarea>
         </div>
         <div>
           <input type="submit" value="create"></input>

@@ -27,8 +27,12 @@ function CreateHistory({ adminStatus }) {
     axios
       .post("http://localhost:4000/history/create", { behind })
       .then((res) => {
-        alert(res.data.message);
-        window.location.href = document.referrer;
+        if (res.data.message === "no") {
+          alert(res.data.why);
+        } else {
+          alert(res.data.message);
+          window.location.href = document.referrer;
+        }
       })
       .catch((err) => {
         console.log(err);
