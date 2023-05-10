@@ -1,5 +1,4 @@
-// eslint-disable-next-line
-
+/*eslint-disable */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -13,13 +12,14 @@ function Home({ user }) {
     axios
       .get("http://localhost:4000/")
       .then((response) => {
-        setMessage(response.data.message);
+        if (response.status === 200) {
+          setMessage(response.data.message);
+        }
       })
       .catch((error) => {
         console.error(error);
       });
   }
-
   return (
     <>
       <h1>Homepage</h1>

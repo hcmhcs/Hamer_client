@@ -14,7 +14,11 @@ function App() {
 
   async function getUser(_id) {
     const response = await axios.get("http://localhost:4000/user/" + _id);
-    if (response.data.message === "ok") {
+    if (response.status === 400) {
+      console.log("잘못된 파라미터");
+    } else if (response.status === 404) {
+      console.log(response.data.message);
+    } else if (response.status === 200) {
       setUser(response.data.user);
     } else {
       console.log(response.data.message);

@@ -30,8 +30,11 @@ function JoinForm() {
     axios
       .post("http://localhost:4000/join", { user })
       .then((res) => {
-        alert(res.data.message);
-        window.location.href = "/";
+        if (res.status === 400 || res.status === 500) {
+          alert(res.data.meesage);
+        } else if (res.status === 204) {
+          window.location.href = "/";
+        }
       })
       .catch((error) => {
         console.log(error);
