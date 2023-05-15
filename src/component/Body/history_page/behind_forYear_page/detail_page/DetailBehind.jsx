@@ -13,7 +13,7 @@ function DetailBehind({ adminStatus, behinds }) {
         await axios
           .delete("http://localhost:4000/history/" + _id)
           .then((res) => {
-            if (res.data.message === "ok") {
+            if (res.status === 204) {
               console.log("삭제완료");
               window.location.href = document.referrer;
             } else {

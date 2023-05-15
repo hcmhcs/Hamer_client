@@ -29,6 +29,7 @@ function DetailPost({ posts, name }) {
           console.log(err);
         }
         alert("삭제해줄게용");
+        window.location.href = "/notice";
       } else {
         alert("권한없음");
         window.location.href = "/notice";
