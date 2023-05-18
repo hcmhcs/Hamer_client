@@ -92,14 +92,31 @@
 
 ## 5.17(화)
 
-1. freeboard만들기
-2. notice를 임원만 올릴수있도록하기
+1. freeboard만들기 (o)
+2. notice를 임원만 올릴수있도록하기(o)
 
-이후에 freeboard 목록 등 이런거 처리
+이후에 freeboard 목록 등 이런거 처리(o)
 
-3. 인증관련 비밀번호 암호화
+3. 인증관련 비밀번호 암호화(o)
 4. 세션처리
 5. admin페이지에서 삭제되고 재랜더링되도록
 
 6. notice 라우터 /\* 에서 /:id로 바꿨으니 그 params를 이용하도록 리팩토링
 7. 지금 catch로 에러처리했으면 status 코드 에러인부분을 catch쪽으로 옮겨야됨.(개중요)
+
+## 5.18(목)
+
+- 완료한거
+  freeboard 페이지
+  notice 임원만 올리고 작성자는 관리자로 통일,삭제는 임원이면 다가능
+  freeboard은 adminpage에서 임원이 다른회원꺼 삭제가능
+  status code 400대면 catch(err)에서 err로 가니까 400대의 어떻게 처리할것은 err에서 해야됨(err.response.status 혹은 err.response.data)
+
+-해야될것
+
+1. 나머지 catch(Err)쓰인곳에 status code에 맞게 처리하기
+2. notice에서 /:id를 이용하기 지금은 주소에서 split,pop이런걸로 따오니까 이거 리팩토링
+3. search 기능구현하기
+4. session 부분 -이후에 할것
+5. 글많아졌을때의 목록 처리는 이후
+6. css꾸미기
