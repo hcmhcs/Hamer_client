@@ -24,9 +24,7 @@ function Mypage({ user }) {
     axios
       .post("http://localhost:4000/user/edit", { _id: user?._id, editUser })
       .then((res) => {
-        console.log("수정중");
         if (res.status === 204) {
-          console.log("수정완료");
           alert("수정완료");
           window.location.href = "/";
         }
@@ -74,7 +72,8 @@ function Mypage({ user }) {
         </form>
       ) : (
         <>
-          <h1>myPage입니다</h1>
+          <h1>myPage</h1>
+          {isEdit && <h3>수정중..</h3>}
           <form onSubmit={handleEditUserSubmit} className="container">
             <label className="item">
               <span>학번 : </span>
@@ -141,6 +140,13 @@ function Mypage({ user }) {
               </Button>
             )}
           </form>
+          <Button
+            onClick={() => {
+              window.location.href = "/";
+            }}
+          >
+            홈으로
+          </Button>
         </>
       )}
     </>

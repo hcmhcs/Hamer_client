@@ -3,10 +3,12 @@ import axios from "axios";
 import React, { useState } from "react";
 
 function CreatePost({ name }) {
+  const type = "notice";
   const [post, setPost] = useState({
     title: "",
     context: "",
     author: "",
+    type,
   });
   const onChange = (e) => {
     setPost({
@@ -57,7 +59,7 @@ function CreatePost({ name }) {
       </form>
       <Button onClick={movePage} variant="primary" size="sm">
         글목록
-      </Button>{" "}
+      </Button>
     </>
   );
 }

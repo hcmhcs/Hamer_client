@@ -8,7 +8,7 @@ import DetailPost from "./detail_page/DetailPost";
 import ListPost from "./main_page/ListPost";
 
 //글목록 react-bootstrap의 accordion
-function Notice({ name }) {
+function Notice({ name, adminStatus }) {
   const [posts, setPosts] = useState(null);
 
   async function getPost() {
@@ -29,7 +29,12 @@ function Notice({ name }) {
   return (
     <>
       <Routes>
-        <Route path="/" element={<ListPost posts={posts} name={name} />} />
+        <Route
+          path="/"
+          element={
+            <ListPost posts={posts} name={name} adminStatus={adminStatus} />
+          }
+        />
         <Route path="/create" element={<CreatePost name={name} />} />
         <Route path="/*" element={<DetailPost posts={posts} name={name} />} />
       </Routes>

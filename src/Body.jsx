@@ -5,11 +5,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./component/Body/home_page/Home";
 import LoginForm from "./component/Body/login_page/LoginForm";
 import JoinForm from "./component/Body/join_page/JoinForm";
-import Empty from "./component/Body/empty_page/Empty";
 import Admin from "./component/Body/admin_page/Admin";
 import Notice from "./component/Body/notice_page/Notice";
 import Mypage from "./component/Body/mypage_page/Mypage";
 import History from "./component/Body/history_page/History";
+import FreeBoard from "./component/Body/freeboard_page/FreeBoard";
 function Body({ user }) {
   return (
     <BrowserRouter>
@@ -17,8 +17,11 @@ function Body({ user }) {
         <Route path="/" element={<Home user={user} />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/join" element={<JoinForm />} />
-        <Route path="/notice/*" element={<Notice name={user?.name} />} />
-        <Route path="/freeboard" element={<Empty title="freeboard" />} />
+        <Route
+          path="/notice/*"
+          element={<Notice name={user?.name} adminStatus={user?.adminStatus} />}
+        />
+        <Route path="/freeboard" element={<FreeBoard />} />
         <Route
           path="/history/*"
           element={
