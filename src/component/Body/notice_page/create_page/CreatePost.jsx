@@ -42,11 +42,11 @@ function CreatePost({ name }) {
       <h1>글생성사이트</h1>
       <form method="post" onChange={onChange} onSubmit={create}>
         <div>
-          <a>title : </a>
+          <p>title : </p>
           <input name="title" type="string"></input>
         </div>
         <div>
-          <a>context: </a>
+          <p>context: </p>
           <textarea
             style={{ width: 700, height: 400 }}
             name="context"

@@ -47,7 +47,7 @@ function Admin({ user }) {
         </ul>
       </div>
       <div>
-        <h3>글목록</h3>
+        <h3>공지글목록</h3>
         <ul>
           {posts?.map((post, index) => (
             <Post post={post} key={index} />

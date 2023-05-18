@@ -58,7 +58,13 @@ function CreateHistory({ adminStatus }) {
           <input type="submit" value="create"></input>
         </div>
       </form>
-      <Button variant="primary" size="sm">
+      <Button
+        onClick={() => {
+          window.location.href = document.referrer;
+        }}
+        variant="primary"
+        size="sm"
+      >
         글목록
       </Button>{" "}
     </>

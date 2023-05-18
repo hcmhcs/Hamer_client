@@ -4,12 +4,12 @@ import ListFreeboard from "./main_page/ListFreeboard";
 import React, { useState, useEffect } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
 import axios from "axios";
-function FreeBoard({ name, adminStatus }) {
+function FreeBoard({ name }) {
   const [posts, setPosts] = useState(null);
 
-  async function getPost() {
+  async function getFreeboard() {
     await axios
-      .get("http://localhost:4000/notice")
+      .get("http://localhost:4000/freeboard")
       .then((response) => {
         setPosts(response.data);
       })
@@ -18,16 +18,19 @@ function FreeBoard({ name, adminStatus }) {
       });
   }
   useEffect(() => {
-    getPost();
+    getFreeboard();
   }, []);
   useEffect(() => {}, [posts]);
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<ListFreeboard />} />
-        <Route path="/create" element={<CreateFreeboard />} />
-        <Route path="/*" element={<DetailFreeboard />} />
+        <Route path="/" element={<ListFreeboard posts={posts} name={name} />} />
+        <Route path="/create" element={<CreateFreeboard name={name} />} />
+        <Route
+          path="/*"
+          element={<DetailFreeboard name={name} posts={posts} />}
+        />
       </Routes>
       <Outlet />
     </>

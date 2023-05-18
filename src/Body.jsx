@@ -21,7 +21,7 @@ function Body({ user }) {
           path="/notice/*"
           element={<Notice name={user?.name} adminStatus={user?.adminStatus} />}
         />
-        <Route path="/freeboard" element={<FreeBoard />} />
+        <Route path="/freeboard/*" element={<FreeBoard name={user?.name} />} />
         <Route
           path="/history/*"
           element={

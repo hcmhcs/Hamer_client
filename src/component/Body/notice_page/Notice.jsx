@@ -11,7 +11,7 @@ import ListPost from "./main_page/ListPost";
 function Notice({ name, adminStatus }) {
   const [posts, setPosts] = useState(null);
 
-  async function getPost() {
+  async function getNotice() {
     await axios
       .get("http://localhost:4000/notice")
       .then((response) => {
@@ -22,7 +22,7 @@ function Notice({ name, adminStatus }) {
       });
   }
   useEffect(() => {
-    getPost();
+    getNotice();
   }, []);
   useEffect(() => {}, [posts]);
 
@@ -36,7 +36,7 @@ function Notice({ name, adminStatus }) {
           }
         />
         <Route path="/create" element={<CreatePost name={name} />} />
-        <Route path="/*" element={<DetailPost posts={posts} name={name} />} />
+        <Route path="/:id" element={<DetailPost posts={posts} name={name} />} />
       </Routes>
       <Outlet />
     </>
