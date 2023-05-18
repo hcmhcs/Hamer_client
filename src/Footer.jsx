@@ -6,7 +6,7 @@ function Footer() {
   return (
     <>
       <hr />
-      <a>{footer}</a>
+      <a href="/changmin">{footer}</a>
     </>
   );
 }

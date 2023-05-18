@@ -20,22 +20,20 @@ function LoginForm() {
     axios
       .post("http://localhost:4000/login", { user })
       .then((res) => {
-        if (res.status === 400) {
-          if (res.data.message) {
-            alert(res.data.message);
-          } else {
-            alert("학번이나 비밀번호를 입력해주세요");
-          }
-        } else if (res.status === 404) {
-          alert("가입되지 않은 학번입니다.");
-        } else if (res.status === 200) {
+        if (res.status === 200) {
           const { isLogin, _id } = res.data;
           localStorage.setItem("LoginUser", JSON.stringify({ isLogin, _id }));
           window.location.href = "/";
         }
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response.status === 400) {
+          alert(error.response.data.message);
+          console.log(error);
+        } else if (error.response.status === 404) {
+          alert(error.response.data.message);
+          console.log(error);
+        }
       });
   };
   return (

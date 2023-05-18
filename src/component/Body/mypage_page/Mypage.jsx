@@ -40,16 +40,22 @@ function Mypage({ user }) {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  const handlePasswordSubmit = (e) => {
+  const handlePasswordSubmit = async (e) => {
     e.preventDefault();
-    if (checkPassword(password)) {
-      setIsAuthenticated(true);
-    } else {
-      alert("비밀번호가 잘못되었습니다.");
+    console.log(user._id, password);
+    try {
+      await axios
+        .post("http://localhost:4000/password", { _id: user._id, password })
+        .then((res) => {
+          if (res.status === 204) {
+            console.log("잘된비밀번호");
+            setIsAuthenticated(true);
+          }
+        });
+    } catch (err) {
+      console.log(err);
+      alert(err.response.data.message);
     }
-  };
-  const checkPassword = (password) => {
-    return password === user?.password;
   };
 
   if (!localStorage.getItem("LoginUser")) {

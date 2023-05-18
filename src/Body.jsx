@@ -10,6 +10,7 @@ import Notice from "./component/Body/notice_page/Notice";
 import Mypage from "./component/Body/mypage_page/Mypage";
 import History from "./component/Body/history_page/History";
 import FreeBoard from "./component/Body/freeboard_page/FreeBoard";
+import Changmin from "./component/Body/changmin_page/Changmin";
 function Body({ user }) {
   return (
     <BrowserRouter>
@@ -30,6 +31,7 @@ function Body({ user }) {
         />
         <Route path="/mypage" element={<Mypage user={user} />} />
         <Route path="/admin" element={<Admin user={user} />} />
+        <Route path="/changmin" element={<Changmin />} />
       </Routes>
     </BrowserRouter>
   );

@@ -33,6 +33,7 @@ function JoinForm() {
         if (res.status === 400 || res.status === 500) {
           alert(res.data.meesage);
         } else if (res.status === 204) {
+          alert("다시 로그인해주세요!");
           window.location.href = "/";
         }
       })

@@ -7,14 +7,13 @@ function CreatePost({ name }) {
   const [post, setPost] = useState({
     title: "",
     context: "",
-    author: "",
+    author: "관리자",
     type,
   });
   const onChange = (e) => {
     setPost({
       ...post,
       [e.target.name]: e.target.value,
-      author: name,
     });
   };
 

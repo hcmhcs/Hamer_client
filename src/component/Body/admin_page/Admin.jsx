@@ -16,7 +16,7 @@ function Admin({ user }) {
     setUsers(response.data);
   }
   async function getPosts() {
-    const response = await axios.get("http://localhost:4000/notice");
+    const response = await axios.get("http://localhost:4000/freeboard");
     setPosts(response.data);
   }
   useEffect(() => {
@@ -47,7 +47,7 @@ function Admin({ user }) {
         </ul>
       </div>
       <div>
-        <h3>공지글목록</h3>
+        <h3>자유게시판 글목록</h3>
         <ul>
           {posts?.map((post, index) => (
             <Post post={post} key={index} />

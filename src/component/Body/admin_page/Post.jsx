@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import axios from "axios";
 
 function Post({ getPosts, post }) {
   const postInfo = useRef();
+
   const deletePost = async () => {
-    const url = "http://localhost:4000/notice/" + postInfo.current.id;
+    const url = "http://localhost:4000/freeboard/" + postInfo.current.id;
     try {
       await axios.delete(url).then((res) => {
         if (res.data.message === "ok") {
@@ -21,15 +22,15 @@ function Post({ getPosts, post }) {
   return (
     <>
       <li>
-        <a
+        <span
           onClick={() => {
-            window.location.href = "/notice/" + post._id;
+            window.location.href = "/freeboard/" + post._id;
           }}
           ref={postInfo}
           id={post._id}
         >
           title:{post.title} / author: {post.author}
-        </a>
+        </span>
         <button onClick={deletePost}>❌</button>
       </li>
     </>

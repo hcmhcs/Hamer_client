@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import "../../../../App.css";
-function DetailPost({ posts, name }) {
+function DetailPost({ posts, name, adminStatus }) {
   const id = window.location.pathname.split("/").pop();
   // 이런 함수를 쓸때 조심할점 ! 아직 posts를 받기전이면 posts는 null값이라서
   // find 함수를 못씀 그니까 ?.find()를 사용하기
@@ -11,8 +11,7 @@ function DetailPost({ posts, name }) {
       alert("권한없음");
       window.location.href = "/login";
     } else {
-      console.log(post?.author);
-      if (post?.author === name) {
+      if (adminStatus) {
         try {
           await axios
             .delete("http://localhost:4000/notice/" + id)
@@ -52,7 +51,7 @@ function DetailPost({ posts, name }) {
         <h3>지은이 : {post?.author}</h3>
       </div>
       <button onClick={() => (window.location.href = "/notice")}>글목록</button>
-      <button onClick={deletePost}>글삭제</button>
+      {adminStatus && <button onClick={deletePost}>글삭제</button>}
     </>
   );
 }

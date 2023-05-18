@@ -1,13 +1,14 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import axios from "axios";
 
 function User({ user }) {
   const userInfo = useRef();
+
   const deleteUser = async () => {
     const url = "http://localhost:4000/user/" + userInfo.current.id;
     try {
       await axios.delete(url).then((res) => {
-        if (res.data.message === "ok") {
+        if (res.status === 204) {
           console.log("유저삭제완료");
         } else {
           console.log(res.data.message);
@@ -21,11 +22,13 @@ function User({ user }) {
   return (
     <>
       <li>
-        <a>이름:{user.name} /</a>
-        <a>이메일:{user.email} /</a>
-        <a ref={userInfo} id={user._id}>
+        <span>
+          이름:{user.name} /이메일:{user.email} /
+        </span>
+
+        <span ref={userInfo} id={user._id}>
           학번:{user.studentNumber}{" "}
-        </a>
+        </span>
         <button onClick={deleteUser}>❌</button>
       </li>
     </>

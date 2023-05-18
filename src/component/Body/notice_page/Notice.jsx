@@ -36,7 +36,12 @@ function Notice({ name, adminStatus }) {
           }
         />
         <Route path="/create" element={<CreatePost name={name} />} />
-        <Route path="/:id" element={<DetailPost posts={posts} name={name} />} />
+        <Route
+          path="/:id"
+          element={
+            <DetailPost adminStatus={adminStatus} posts={posts} name={name} />
+          }
+        />
       </Routes>
       <Outlet />
     </>
