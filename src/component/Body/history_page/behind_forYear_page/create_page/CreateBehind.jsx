@@ -49,14 +49,18 @@ function CreateBehind({ adminStatus }) {
         </div>
         <div>
           <p>context: </p>
-          <input
+          <textarea
             style={{ width: 700, height: 400 }}
             name="context"
             type="string"
-          ></input>
+          ></textarea>
         </div>
         <div>
-          <input type="submit" value="create"></input>
+          <input
+            className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+            type="submit"
+            value="create"
+          ></input>
         </div>
       </form>
       <button

@@ -1,22 +1,21 @@
 import React, { useRef } from "react";
 import axios from "axios";
 
-function User({ user }) {
+function UserMore({ user }) {
   const userInfo = useRef();
-  const changeAdmin = async () => {
-    alert("관리자로 임명합니다");
+  const changeNormal = async () => {
     try {
       await axios
-        .get("http://localhost:4000/user/chown/" + user._id)
+        .get("http://localhost:4000/user/chown-/" + user._id)
         .then((res) => {
           console.log(user._id);
           if (res.status === 204) {
-            alert(`${user.name}님이 관리자가 되었습니다`);
+            alert(`${user.name}님이 관리자권한이 사라졌습니다.`);
             window.location.href = "/";
           }
         });
     } catch (err) {
-      console.log(err);
+      alert(err.response.data.message);
     }
   };
   const deleteUser = async () => {
@@ -51,13 +50,13 @@ function User({ user }) {
         </button>
         <button
           className="bg-gray-100 hover:bg-gray-300 m-2 rounded-md"
-          onClick={changeAdmin}
+          onClick={changeNormal}
         >
-          관리자 권한주기
+          관리자 권한삭제
         </button>
       </li>
     </>
   );
 }
 
-export default User;
+export default UserMore;
