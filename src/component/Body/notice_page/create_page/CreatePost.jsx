@@ -38,7 +38,7 @@ function CreatePost({ name }) {
   };
   return (
     <>
-      <h1>글생성사이트</h1>
+      <h1 className="text-3xl font-bold underline m-2">글생성사이트</h1>
       <form method="post" onChange={onChange} onSubmit={create}>
         <div>
           <p>title : </p>
@@ -53,12 +53,19 @@ function CreatePost({ name }) {
           ></textarea>
         </div>
         <div>
-          <input type="submit" value="create"></input>
+          <input
+            className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+            type="submit"
+            value="create"
+          ></input>
         </div>
       </form>
-      <Button onClick={movePage} variant="primary" size="sm">
+      <button
+        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+        onClick={movePage}
+      >
         글목록
-      </Button>
+      </button>
     </>
   );
 }

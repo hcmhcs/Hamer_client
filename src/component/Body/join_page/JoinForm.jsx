@@ -43,7 +43,7 @@ function JoinForm() {
   };
   return (
     <>
-      <h1>회원가입</h1>
+      <h1 className="text-3xl font-bold underline">회원가입</h1>
       <Form method="post" onChange={onChange} onSubmit={join}>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridstudentNumber">

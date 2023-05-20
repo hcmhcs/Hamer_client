@@ -31,7 +31,8 @@ function Behind({ behind, num }) {
         {behind.title}
       </td>
       <td>{behind.author}</td>
-      {/* <td>{behind.createdAt.substring(0, 10)}</td> */}
+      <td>{behind.createdAt.substring(0, 10)}</td>
+
       {/* <td>{moment(post.date).format("YYYY-MM-DD")}</td> */}
       {/* <td>{post.readCount}</td> */}
     </tr>

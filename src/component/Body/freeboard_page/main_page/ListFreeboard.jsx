@@ -13,8 +13,8 @@ function ListFreeboard({ posts, name }) {
   };
   return (
     <>
-      <div style={{ padding: "10 20px" }}>
-        <h2>자유게시판</h2>
+      <div className="m-2 p-1" style={{ padding: "10 20px" }}>
+        <h2 className=" text-3xl font-bold">자유게시판</h2>
         <Form className="d-flex">
           <Form.Control
             type="search"
@@ -55,14 +55,12 @@ function ListFreeboard({ posts, name }) {
           </ul>
         </div> */}
 
-      <Button
-        style={{ padding: "6px" }}
-        variant="primary"
-        size="sm"
+      <button
+        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
         onClick={createBoard}
       >
         글생성
-      </Button>
+      </button>
     </>
   );
 }

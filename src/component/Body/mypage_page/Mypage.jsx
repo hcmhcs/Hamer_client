@@ -1,6 +1,5 @@
 // eslint-disable-next-line
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
 import "./mypage.css";
 import axios from "axios";
 function Mypage({ user }) {
@@ -66,19 +65,25 @@ function Mypage({ user }) {
     <>
       {!isAuthenticated ? (
         <form onSubmit={handlePasswordSubmit}>
-          <label>
+          <label className="m-2">
             비밀번호를 입력하시오:
             <input
+              className="m-2"
               type="password"
               value={password}
               onChange={handlePasswordChange}
             />
           </label>
-          <button type="submit">확인</button>
+          <button
+            className=" text-white px-3 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+            type="submit"
+          >
+            확인
+          </button>
         </form>
       ) : (
         <>
-          <h1>myPage</h1>
+          <h1 className="text-3xl font-bold m-3 p-1">myPage</h1>
           {isEdit && <h3>수정중..</h3>}
           <form onSubmit={handleEditUserSubmit} className="container">
             <label className="item">
@@ -136,23 +141,30 @@ function Mypage({ user }) {
             </label>
 
             {!isEdit && (
-              <Button onClick={handleEditing} variant="primary" size="sm">
+              <button
+                className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+                onClick={handleEditing}
+              >
                 수정
-              </Button>
+              </button>
             )}
             {isEdit && (
-              <Button type="submit" variant="primary" size="sm">
+              <button
+                className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+                type="submit"
+              >
                 저장
-              </Button>
+              </button>
             )}
           </form>
-          <Button
+          <button
+            className=" text-white px-3 py-1 m-1 rounded-md bg-sky-500 hover:bg-sky-700"
             onClick={() => {
               window.location.href = "/";
             }}
           >
             홈으로
-          </Button>
+          </button>
         </>
       )}
     </>

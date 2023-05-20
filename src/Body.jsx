@@ -31,7 +31,7 @@ function Body({ user }) {
         />
         <Route path="/mypage" element={<Mypage user={user} />} />
         <Route path="/admin" element={<Admin user={user} />} />
-        <Route path="/changmin" element={<Changmin />} />
+        <Route path="/:name" element={<Changmin />} />
       </Routes>
     </BrowserRouter>
   );

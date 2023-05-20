@@ -33,10 +33,20 @@ function DetailBehind({ adminStatus, behinds }) {
         <h3>내용 : {behind?.context}</h3>
         <h3>지은이 : {behind?.author}</h3>
       </div>
-      <button onClick={() => (window.location.href = `/history/admin/${year}`)}>
+      <button
+        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+        onClick={() => (window.location.href = `/history/admin/${year}`)}
+      >
         글목록
       </button>
-      {adminStatus && <button onClick={deleteBehind}>글삭제</button>}
+      {adminStatus && (
+        <button
+          className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+          onClick={deleteBehind}
+        >
+          글삭제
+        </button>
+      )}
     </>
   );
 }

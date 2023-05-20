@@ -38,10 +38,12 @@ function LoginForm() {
   };
   return (
     <>
-      <h1>로그인</h1>
+      <h1 className=" text-3xl font-bold">로그인</h1>
       <Form method="post" onChange={onChange} onSubmit={login}>
         <Form.Group className="mb-3" controlId="formBasicstudentNumber">
-          <Form.Label>StudentNumber</Form.Label>
+          <Form.Label className=" text-xl font-semibold">
+            StudentNumber
+          </Form.Label>
           <Form.Control
             name="studentNumber"
             type="string"
@@ -53,7 +55,7 @@ function LoginForm() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className=" text-xl font-semibold">Password</Form.Label>
           <Form.Control
             name="password"
             type="password"

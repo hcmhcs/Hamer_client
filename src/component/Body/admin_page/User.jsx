@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 
 function User({ user }) {
@@ -21,15 +21,19 @@ function User({ user }) {
   };
   return (
     <>
-      <li>
+      <li className=" m-2">
         <span>
           이름:{user.name} /이메일:{user.email} /
         </span>
-
         <span ref={userInfo} id={user._id}>
           학번:{user.studentNumber}{" "}
         </span>
-        <button onClick={deleteUser}>❌</button>
+        <button
+          className="bg-gray-100 hover:bg-gray-300 m-2 rounded-md"
+          onClick={deleteUser}
+        >
+          ❌
+        </button>
       </li>
     </>
   );

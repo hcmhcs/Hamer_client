@@ -37,17 +37,18 @@ function Admin({ user }) {
   }
   return (
     <>
-      <h1>Admin</h1>
-      <div>
-        <h3>회원명단</h3>
+      <h1 className="text-3xl">Admin</h1>
+      <div className="m-1 p-1">
+        <h3 className="text-x font-bold">회원명단</h3>
         <ul>
           {users?.map((user, index) => (
             <User user={user} key={index} />
           ))}
         </ul>
       </div>
-      <div>
-        <h3>자유게시판 글목록</h3>
+      <hr />
+      <div className="m-1 p-1">
+        <h3 className="text-xl font-bold">자유게시판 글목록</h3>
         <ul>
           {posts?.map((post, index) => (
             <Post post={post} key={index} />

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 
 function Post({ getPosts, post }) {
@@ -21,7 +21,7 @@ function Post({ getPosts, post }) {
   };
   return (
     <>
-      <li>
+      <li className="m-2">
         <span
           onClick={() => {
             window.location.href = "/freeboard/" + post._id;
@@ -31,7 +31,12 @@ function Post({ getPosts, post }) {
         >
           title:{post.title} / author: {post.author}
         </span>
-        <button onClick={deletePost}>❌</button>
+        <button
+          className=" m-2 bg-gray-100 hover:bg-gray-300 rounded-md"
+          onClick={deletePost}
+        >
+          ❌
+        </button>
       </li>
     </>
   );

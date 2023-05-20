@@ -2,11 +2,15 @@
 import React from "react";
 
 function Footer() {
-  const footer = "Made by Changmin Han";
+  const author = "Changmin Han";
   return (
     <>
-      <hr />
-      <a href="/changmin">{footer}</a>
+      <div className="fixed bottom-0 left-0 right-0 z-40 px-4 py-3 text-center text-white bg-sky-500">
+        {"Made by "}
+        <a className="text-gray-200 underline" href="/changmin">
+          {author}
+        </a>
+      </div>
     </>
   );
 }

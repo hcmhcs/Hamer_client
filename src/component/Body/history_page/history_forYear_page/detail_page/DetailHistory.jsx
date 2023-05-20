@@ -33,10 +33,20 @@ function DetailHistory({ adminStatus, historys }) {
         <h3>내용 : {history?.context}</h3>
         <h3>지은이 : {history?.author}</h3>
       </div>
-      <button onClick={() => (window.location.href = `/history/${year}`)}>
+      <button
+        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+        onClick={() => (window.location.href = `/history/${year}`)}
+      >
         글목록
       </button>
-      {adminStatus && <button onClick={deleteHistory}>글삭제</button>}
+      {adminStatus && (
+        <button
+          className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+          onClick={deleteHistory}
+        >
+          글삭제
+        </button>
+      )}
     </>
   );
 }

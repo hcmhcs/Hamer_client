@@ -51,10 +51,18 @@ function DetailFreeboard({ posts, name }) {
         </div>
         <h3>지은이 : {post?.author}</h3>
       </div>
-      <button onClick={() => (window.location.href = "/freeboard")}>
+      <button
+        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+        onClick={() => (window.location.href = "/freeboard")}
+      >
         글목록
       </button>
-      <button onClick={deletePost}>글삭제</button>
+      <button
+        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+        onClick={deletePost}
+      >
+        글삭제
+      </button>
     </>
   );
 }

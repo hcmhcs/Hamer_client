@@ -50,8 +50,21 @@ function DetailPost({ posts, name, adminStatus }) {
         </div>
         <h3>지은이 : {post?.author}</h3>
       </div>
-      <button onClick={() => (window.location.href = "/notice")}>글목록</button>
-      {adminStatus && <button onClick={deletePost}>글삭제</button>}
+      <button
+        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+        onClick={() => (window.location.href = "/notice")}
+      >
+        글목록
+      </button>
+
+      {adminStatus && (
+        <button
+          className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+          onClick={deletePost}
+        >
+          글삭제
+        </button>
+      )}
     </>
   );
 }

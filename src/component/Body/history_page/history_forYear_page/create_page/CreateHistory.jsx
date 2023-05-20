@@ -40,7 +40,7 @@ function CreateHistory({ adminStatus }) {
   };
   return (
     <>
-      <h1>{year} 년도 행적 글생성</h1>
+      <h1 className="text-xl font-bold">{year} 년도 역사 글생성</h1>
       <form method="post" onChange={onChange} onSubmit={create}>
         <div>
           <p>title : </p>
@@ -58,15 +58,14 @@ function CreateHistory({ adminStatus }) {
           <input type="submit" value="create"></input>
         </div>
       </form>
-      <Button
+      <button
+        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
         onClick={() => {
           window.location.href = document.referrer;
         }}
-        variant="primary"
-        size="sm"
       >
         글목록
-      </Button>{" "}
+      </button>
     </>
   );
 }

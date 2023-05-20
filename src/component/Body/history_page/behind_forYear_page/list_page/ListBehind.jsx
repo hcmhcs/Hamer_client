@@ -7,8 +7,7 @@ function ListBehind({ behinds, adminStatus }) {
   const year = useParams().year;
   return (
     <>
-      {adminStatus && <h1>{year}년도 임원진 비하인드</h1>}
-      {/* {!adminStatus && <h1>{year}년도 역사</h1>} */}
+      <h1 className="text-xl font-bold">{year}년도 임원진 비하인드</h1>
       <div style={{ padding: "10 20px" }}>
         <table>
           <colgroup>
@@ -34,25 +33,23 @@ function ListBehind({ behinds, adminStatus }) {
         </table>
       </div>
       {adminStatus && (
-        <Button
+        <button
+          className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
           onClick={() => {
             window.location.href = year + "/create";
           }}
-          variant="primary"
-          size="sm"
         >
           글생성
-        </Button>
+        </button>
       )}
-      <Button
+      <button
+        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
         onClick={() => {
           window.location.href = "/history";
         }}
-        variant="primary"
-        size="sm"
       >
         뒤로가기
-      </Button>{" "}
+      </button>
     </>
   );
 }
