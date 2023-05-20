@@ -66,9 +66,12 @@ function LoginForm() {
           <Form.Check type="checkbox" label="자동로그인" />
           {/* 자동로그인 구현해놓기 아직안함 */}
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Login
-        </Button>
+        <button
+          className=" text-white px-3 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+          type="submit"
+        >
+          확인
+        </button>
         <Form.Text
           onClick={() => (window.location.href = "/join")}
           className="text-muted"

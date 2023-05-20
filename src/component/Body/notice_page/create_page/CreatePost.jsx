@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import React, { useState } from "react";
 
-function CreatePost({ name }) {
+function CreatePost({ name, adminStatus }) {
   const type = "notice";
   const [post, setPost] = useState({
     title: "",
@@ -36,36 +36,45 @@ function CreatePost({ name }) {
   const movePage = () => {
     window.location.href = "/notice";
   };
+  if (!localStorage.getItem("LoginUser")) {
+    return <h1>잘못된 접근, Login후 접속가능</h1>;
+  }
+  console.log(adminStatus);
   return (
     <>
-      <h1 className="text-3xl font-bold underline m-2">글생성사이트</h1>
-      <form method="post" onChange={onChange} onSubmit={create}>
-        <div>
-          <p>title : </p>
-          <input name="title" type="string"></input>
-        </div>
-        <div>
-          <p>context: </p>
-          <textarea
-            style={{ width: 700, height: 400 }}
-            name="context"
-            type="string"
-          ></textarea>
-        </div>
-        <div>
-          <input
+      {!adminStatus && <h1>잘못된 접근, Admin만 접속가능</h1>}
+      {adminStatus && (
+        <>
+          <h1 className="text-3xl font-bold underline m-2">글생성사이트</h1>
+          <form method="post" onChange={onChange} onSubmit={create}>
+            <div>
+              <p>title : </p>
+              <input name="title" type="string"></input>
+            </div>
+            <div>
+              <p>context: </p>
+              <textarea
+                style={{ width: 700, height: 400 }}
+                name="context"
+                type="string"
+              ></textarea>
+            </div>
+            <div>
+              <input
+                className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+                type="submit"
+                value="create"
+              ></input>
+            </div>
+          </form>
+          <button
             className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
-            type="submit"
-            value="create"
-          ></input>
-        </div>
-      </form>
-      <button
-        className=" text-white px-3 m-1 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
-        onClick={movePage}
-      >
-        글목록
-      </button>
+            onClick={movePage}
+          >
+            글목록
+          </button>
+        </>
+      )}
     </>
   );
 }

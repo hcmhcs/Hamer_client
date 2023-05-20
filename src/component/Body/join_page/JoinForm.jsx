@@ -96,14 +96,17 @@ function JoinForm() {
             <Form.Label>adminStatus</Form.Label>
             <Form.Select name="adminStatus" defaultValue="Choose...">
               <option>일반회원</option>
-              <option>임원</option>
+              <option disabled>임원</option>
             </Form.Select>
           </Form.Group>
         </Row>
 
-        <Button variant="primary" type="submit">
+        <button
+          className=" text-white px-3 py-1 rounded-md bg-sky-500 hover:bg-sky-700"
+          type="submit"
+        >
           Submit
-        </Button>
+        </button>
       </Form>
     </>
   );

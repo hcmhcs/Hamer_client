@@ -11,6 +11,7 @@ function Mypage({ user }) {
     email: user?.eamil,
     phoneNumber: user?.phoneNumber,
   });
+
   const handleEditUserChange = (e) => {
     setEditUser({
       ...editUser,
@@ -54,6 +55,24 @@ function Mypage({ user }) {
     } catch (err) {
       console.log(err);
       alert(err.response.data.message);
+    }
+  };
+  const deleteUser = async () => {
+    const url = "http://localhost:4000/user/" + user._id;
+    try {
+      await axios.delete(url).then((res) => {
+        if (res.status === 204) {
+          console.log("탈퇴완료");
+          localStorage.removeItem("LoginUser");
+          alert("로그인을 종료합니다");
+          window.location.href = "/";
+        } else {
+          console.log(res.data.message);
+          console.log("유저 삭제 실패");
+        }
+      });
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -157,6 +176,14 @@ function Mypage({ user }) {
               </button>
             )}
           </form>
+          <button
+            className=" text-white px-3 py-1 m-1 rounded-md bg-sky-500 hover:bg-sky-700"
+            onClick={() => {
+              deleteUser();
+            }}
+          >
+            탈퇴하기
+          </button>
           <button
             className=" text-white px-3 py-1 m-1 rounded-md bg-sky-500 hover:bg-sky-700"
             onClick={() => {

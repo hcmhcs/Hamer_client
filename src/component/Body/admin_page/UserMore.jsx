@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import axios from "axios";
 
-function UserMore({ user }) {
+function UserMore({ user, id }) {
   const userInfo = useRef();
   const changeNormal = async () => {
     try {
@@ -33,28 +33,51 @@ function UserMore({ user }) {
       console.log(err);
     }
   };
+
   return (
     <>
-      <li className=" m-2">
-        <span>
-          이름:{user.name} /이메일:{user.email} /
-        </span>
-        <span ref={userInfo} id={user._id}>
-          학번:{user.studentNumber}{" "}
-        </span>
-        <button
-          className="bg-gray-100 hover:bg-gray-300 m-2 rounded-md"
-          onClick={deleteUser}
-        >
-          ❌
-        </button>
-        <button
-          className="bg-gray-100 hover:bg-gray-300 m-2 rounded-md"
-          onClick={changeNormal}
-        >
-          관리자 권한삭제
-        </button>
-      </li>
+      {id === user._id && (
+        <>
+          <li className=" m-2">
+            <span>
+              이름:{user.name} /이메일:{user.email} /
+            </span>
+            <span ref={userInfo} id={user._id}>
+              학번:{user.studentNumber}{" "}
+            </span>
+            <span>{"     👈👈👈 나!!"}</span>
+          </li>
+        </>
+      )}
+      {id !== user._id && (
+        <>
+          <li className=" m-2">
+            <span>
+              이름:{user.name} /이메일:{user.email} /
+            </span>
+            <span ref={userInfo} id={user._id}>
+              학번:{user.studentNumber}{" "}
+            </span>
+            {user.adminStatus && <span>회원구분 : 임원 /</span>}
+            {!user.adminStatus && <span>회원구분 : 일반회원 /</span>}
+
+            <button
+              className="bg-gray-200 hover:bg-gray-400 m-2 rounded-md"
+              onClick={deleteUser}
+            >
+              ❌
+            </button>
+            {user.adminStatus && (
+              <button
+                className="bg-gray-200 hover:bg-gray-400 m-2 rounded-md"
+                onClick={changeNormal}
+              >
+                관리자 권한삭제
+              </button>
+            )}
+          </li>
+        </>
+      )}
     </>
   );
 }

@@ -31,7 +31,7 @@ function Body({ user }) {
           }
         />
         <Route path="/mypage" element={<Mypage user={user} />} />
-        <Route path="/admin/more" element={<AdminMore user={user} />} />
+        <Route path="/admin/more" element={<AdminMore userMe={user} />} />
 
         <Route path="/admin" element={<Admin user={user} />} />
 

@@ -10,7 +10,6 @@ import ListPost from "./main_page/ListPost";
 //글목록 react-bootstrap의 accordion
 function Notice({ name, adminStatus }) {
   const [posts, setPosts] = useState(null);
-
   async function getNotice() {
     await axios
       .get("http://localhost:4000/notice")
@@ -35,7 +34,10 @@ function Notice({ name, adminStatus }) {
             <ListPost posts={posts} name={name} adminStatus={adminStatus} />
           }
         />
-        <Route path="/create" element={<CreatePost name={name} />} />
+        <Route
+          path="/create"
+          element={<CreatePost adminStatus={adminStatus} name={name} />}
+        />
         <Route
           path="/:id"
           element={

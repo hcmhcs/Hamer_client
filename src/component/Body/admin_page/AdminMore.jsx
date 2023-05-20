@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserMore from "./UserMore";
 
-function AdminMore({ user }) {
+function AdminMore({ userMe }) {
+  const id = userMe?._id;
   const [users, setUsers] = useState(null);
   async function getUsers() {
     const response = await axios.get("http://localhost:4000/user");
@@ -19,7 +20,7 @@ function AdminMore({ user }) {
   if (!users) return null;
   if (!localStorage.getItem("LoginUser")) {
     return <h1>잘못된 접근, Login후 접속가능</h1>;
-  } else if (!user?.adminStatus) {
+  } else if (!userMe?.adminStatus) {
     return <h1>잘못된 접근, Admin만 접속가능</h1>;
   }
   return (
@@ -29,7 +30,7 @@ function AdminMore({ user }) {
         <h3 className="text-x font-bold">전체회원명단</h3>
         <ul>
           {users?.map((user, index) => (
-            <UserMore user={user} key={index} />
+            <UserMore id={id} user={user} key={index} />
           ))}
         </ul>
       </div>
