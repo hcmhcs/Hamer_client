@@ -5,13 +5,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./component/Body/home_page/Home";
 import LoginForm from "./component/Body/login_page/LoginForm";
 import JoinForm from "./component/Body/join_page/JoinForm";
-import Admin from "./component/Body/admin_page/Admin";
 import Notice from "./component/Body/notice_page/Notice";
 import Mypage from "./component/Body/mypage_page/Mypage";
 import History from "./component/Body/history_page/History";
 import FreeBoard from "./component/Body/freeboard_page/FreeBoard";
 import Changmin from "./component/Body/changmin_page/Changmin";
-import AdminMore from "./component/Body/admin_page/AdminMore";
+import AdminRouter from "./component/Body/admin_page/AdminRouter";
 function Body({ user }) {
   return (
     <BrowserRouter>
@@ -31,9 +30,7 @@ function Body({ user }) {
           }
         />
         <Route path="/mypage" element={<Mypage user={user} />} />
-        <Route path="/admin/more" element={<AdminMore userMe={user} />} />
-
-        <Route path="/admin" element={<Admin user={user} />} />
+        <Route path="/admin/*" element={<AdminRouter user={user} />} />
 
         <Route path="/:name" element={<Changmin />} />
       </Routes>
